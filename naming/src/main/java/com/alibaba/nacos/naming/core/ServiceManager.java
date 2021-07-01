@@ -466,8 +466,10 @@ public class ServiceManager implements RecordListener<Service> {
             service.setGroupName(NamingUtils.getGroupName(serviceName));
             // now validate the service. if failed, exception will be thrown
             service.setLastModifiedMillis(System.currentTimeMillis());
+            // synchronized 修饰方法时锁定的是调用该方法的对象  这里锁定service对象
             service.recalculateChecksum();
             if (cluster != null) {
+                // 服务加入集群
                 cluster.setService(service);
                 service.getClusterMap().put(cluster.getName(), cluster);
             }

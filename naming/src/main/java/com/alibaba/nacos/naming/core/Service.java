@@ -562,7 +562,8 @@ public class Service extends com.alibaba.nacos.api.naming.pojo.Service implement
             ipsString.append(string);
             ipsString.append(",");
         }
-        
+
+        // md5加密返回当前服务实例的ip串
         checksum = MD5Utils.md5Hex(ipsString.toString(), Constants.ENCODE);
     }
     

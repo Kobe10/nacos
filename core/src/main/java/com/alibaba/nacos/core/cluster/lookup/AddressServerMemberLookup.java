@@ -41,6 +41,7 @@ import java.util.Map;
  *
  * @author <a href="mailto:liaochuntao@live.com">liaochuntao</a>
  */
+// nacosTodo 非文件寻址模式
 public class AddressServerMemberLookup extends AbstractMemberLookup {
     
     private final GenericType<RestResult<String>> genericType = new GenericType<RestResult<String>>() { };

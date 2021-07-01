@@ -28,6 +28,7 @@ import java.util.Collections;
  *
  * @author <a href="mailto:liaochuntao@live.com">liaochuntao</a>
  */
+//nacosTodo 单机模式寻址
 public class StandaloneMemberLookup extends AbstractMemberLookup {
     
     @Override

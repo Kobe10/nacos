@@ -74,6 +74,7 @@ public class DistroLoadDataTask implements Runnable {
     }
     
     private void load() throws Exception {
+        //nacosTODO 轮询等待初始化
         while (memberManager.allMembersWithoutSelf().isEmpty()) {
             Loggers.DISTRO.info("[DISTRO-INIT] waiting server list init...");
             TimeUnit.SECONDS.sleep(1);

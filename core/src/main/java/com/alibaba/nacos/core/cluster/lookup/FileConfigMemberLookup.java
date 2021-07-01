@@ -36,10 +36,12 @@ import java.util.List;
  *
  * @author <a href="mailto:liaochuntao@live.com">liaochuntao</a>
  */
+// nacosTodo 配置文件寻址
 public class FileConfigMemberLookup extends AbstractMemberLookup {
     
     private static final String DEFAULT_SEARCH_SEQ = "cluster.conf";
-    
+
+    // 监听配置文件
     private FileWatcher watcher = new FileWatcher() {
         @Override
         public void onChange(FileChangeEvent event) {
@@ -51,9 +53,12 @@ public class FileConfigMemberLookup extends AbstractMemberLookup {
             return StringUtils.contains(context, DEFAULT_SEARCH_SEQ);
         }
     };
-    
+
+    // nacosTodo 寻址算法核心方法  (实现父类的抽象方法)
+    // 利用监控cluster.conf文件的变动实现节点的管理 (节点管理)
     @Override
     public void doStart() throws NacosException {
+        // FileConfigMemberLookup -- 利用监控cluster.conf文件的变动实现节点的管理
         readClusterConfFromDisk();
         
         // Use the inotify mechanism to monitor file changes and automatically
@@ -78,6 +83,7 @@ public class FileConfigMemberLookup extends AbstractMemberLookup {
     private void readClusterConfFromDisk() {
         Collection<Member> tmpMembers = new ArrayList<>();
         try {
+            // 从磁盘中读取配置信息
             List<String> tmp = EnvUtil.readClusterConf();
             tmpMembers = MemberUtil.readServerConf(tmp);
         } catch (Throwable e) {

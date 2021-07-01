@@ -168,7 +168,9 @@ public class DistroClientDataProcessor extends SmartSubscriber implements Distro
         List<InstancePublishInfo> instances = clientSyncData.getInstancePublishInfos();
         Set<Service> syncedService = new HashSet<>();
         for (int i = 0; i < namespaces.size(); i++) {
+            // nacosTODO 新建一个服务(空的 有一些配置信息)
             Service service = Service.newService(namespaces.get(i), groupNames.get(i), serviceNames.get(i));
+            // 尝试去获取这个服务
             Service singleton = ServiceManager.getInstance().getSingleton(service);
             syncedService.add(singleton);
             InstancePublishInfo instancePublishInfo = instances.get(i);
